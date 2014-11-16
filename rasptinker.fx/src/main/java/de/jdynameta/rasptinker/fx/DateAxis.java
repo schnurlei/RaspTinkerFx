@@ -1,4 +1,4 @@
-package de.jdynameta.rasptinkerfx;
+package de.jdynameta.rasptinker.fx;
 
 import com.sun.javafx.charts.ChartLayoutAnimator;
 import javafx.animation.KeyFrame;

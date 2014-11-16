@@ -1,9 +1,9 @@
-package de.jdynameta.rasptinkerfx;
+package de.jdynameta.rasptinker.fx;
 
 import com.tinkerforge.BrickletBarometer;
 import com.tinkerforge.NotConnectedException;
 import com.tinkerforge.TimeoutException;
-import de.jdynameta.rasptinkerfx.model.TinkerForgeConnection;
+import de.jdynameta.rasptinker.model.TinkerForgeConnection;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;

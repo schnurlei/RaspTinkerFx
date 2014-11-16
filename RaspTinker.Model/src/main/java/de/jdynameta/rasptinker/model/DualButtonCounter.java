@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.jdynameta.rasptinkerfx.model;
+package de.jdynameta.rasptinker.model;
 
 import com.tinkerforge.BrickletDualButton;
 

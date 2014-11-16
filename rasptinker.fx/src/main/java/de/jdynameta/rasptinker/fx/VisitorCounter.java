@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.jdynameta.rasptinkerfx;
+package de.jdynameta.rasptinker.fx;
 
 import com.tinkerforge.BrickletLCD20x4;
 import com.tinkerforge.BrickletMotionDetector;
 import com.tinkerforge.BrickletPiezoSpeaker;
-import de.jdynameta.rasptinkerfx.model.DualButtonCounter;
-import de.jdynameta.rasptinkerfx.model.TinkerForgeConnection;
+import de.jdynameta.rasptinker.model.DualButtonCounter;
+import de.jdynameta.rasptinker.model.TinkerForgeConnection;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

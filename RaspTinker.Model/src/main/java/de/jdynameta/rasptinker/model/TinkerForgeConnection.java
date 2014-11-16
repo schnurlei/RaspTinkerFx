@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.jdynameta.rasptinkerfx.model;
+package de.jdynameta.rasptinker.model;
 
 import com.tinkerforge.AlreadyConnectedException;
 import com.tinkerforge.BrickMaster;
+import com.tinkerforge.BrickletAmbientLight;
 import com.tinkerforge.BrickletBarometer;
 import com.tinkerforge.BrickletDualButton;
+import com.tinkerforge.BrickletHumidity;
 import com.tinkerforge.BrickletLCD20x4;
 import com.tinkerforge.BrickletMotionDetector;
 import com.tinkerforge.BrickletPiezoSpeaker;
+import com.tinkerforge.BrickletTilt;
 import com.tinkerforge.IPConnection;
 import static com.tinkerforge.IPConnectionBase.CONNECTION_STATE_CONNECTED;
 import com.tinkerforge.NotConnectedException;
@@ -181,7 +184,51 @@ public class TinkerForgeConnection
 		
 		return barometer;
 	}
-			
+	
+	public BrickletAmbientLight addAmbientLight(String uid, int callbackPeriode) {
+
+		BrickletAmbientLight ambient = new BrickletAmbientLight(uid, ipcon);
+		addConnectionListener((ConnectionState state, Throwable exp) ->{
+			if(state == ConnectionState.CONNECTED) {
+				try
+				{
+					ambient.setIlluminanceCallbackPeriod(callbackPeriode);
+				} catch (TimeoutException | NotConnectedException ex)
+				{
+					Logger.getLogger(TinkerForgeConnection.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		});
+		
+		return ambient;
+	}
+		
+	public BrickletHumidity addHumidity(String uid, int callbackPeriode) {
+
+		BrickletHumidity ambient = new BrickletHumidity(uid, ipcon);
+		addConnectionListener((ConnectionState state, Throwable exp) ->{
+			if(state == ConnectionState.CONNECTED) {
+				try
+				{
+					ambient.setHumidityCallbackPeriod(callbackPeriode);
+				} catch (TimeoutException | NotConnectedException ex)
+				{
+					Logger.getLogger(TinkerForgeConnection.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		});
+		
+		return ambient;
+	}
+
+		public BrickletTilt addTilt(String uid, int callbackPeriode) {
+
+		BrickletTilt ambient = new BrickletTilt(uid, ipcon);
+		
+		return ambient;
+	}
+
+	
 	public BrickletDualButton addDualButton(String uid, ButtonState left, ButtonState right) {
 
 		BrickletDualButton dualButton = new BrickletDualButton(uid, ipcon);

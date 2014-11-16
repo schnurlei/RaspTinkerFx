@@ -1,4 +1,4 @@
-package de.jdynameta.rasptinkerfx;
+package de.jdynameta.rasptinker.fx;
 
 import java.net.URL;
 import java.util.ResourceBundle;

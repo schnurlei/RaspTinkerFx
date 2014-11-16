@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.jdynameta.rasptinkerfx.model;
+package de.jdynameta.rasptinker.model;
 
 import com.tinkerforge.BrickDC;
 import com.tinkerforge.BrickMaster;
@@ -11,9 +11,11 @@ import com.tinkerforge.BrickServo;
 import com.tinkerforge.BrickletAmbientLight;
 import com.tinkerforge.BrickletBarometer;
 import com.tinkerforge.BrickletDualButton;
+import com.tinkerforge.BrickletHumidity;
 import com.tinkerforge.BrickletLCD20x4;
 import com.tinkerforge.BrickletNFCRFID;
 import com.tinkerforge.BrickletPiezoSpeaker;
+import com.tinkerforge.BrickletTilt;
 
 /**
  *
@@ -32,7 +34,7 @@ public enum TinkerForgeDeviceTypes
 //    BRICKDC(    24,"Bricklet Current25"),
 //    BRICKDC(    25, "Bricklet Distance IR"),
 //    BRICKDC(    26, "Bricklet Dual Relay"),
-//    BRICKDC(    27, "Bricklet Humidity"),
+      BRICKLET_HUMIDITY(    BrickletHumidity.DEVICE_IDENTIFIER, "Bricklet Humidity"),
 //    BRICKDC(    28, "Bricklet IO-16"),
 //    BRICKDC(    29, "Bricklet IO-4"),
 //    BRICKDC(    210, 	"Bricklet Joystick"),
@@ -64,7 +66,7 @@ public enum TinkerForgeDeviceTypes
 //    BRICKDC(    236, 	"Bricklet Rotary Encoder"),
 //    BRICKDC(    237, 	"Bricklet Segment Display 4x7"),
 //    BRICKDC(    238, 	"Bricklet Sound Intensity"),
-//    BRICKDC(    239, 	"Bricklet Tilt"),
+	  BRICKLET_TILT(    BrickletTilt.DEVICE_IDENTIFIER, 	"Bricklet Tilt"),
 //    BRICKDC(    240, 	"Bricklet Hall Effect"),
 //    BRICKDC(    241, 	"Bricklet Line"),
       BRICKLET_PIEZO_SPEAKER(BrickletPiezoSpeaker.DEVICE_IDENTIFIER, 	"Bricklet Piezo Speaker"),
