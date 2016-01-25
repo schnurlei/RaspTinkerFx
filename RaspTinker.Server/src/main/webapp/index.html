@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <script src="lib/jquery-2.2.0.min.js"></script>
+        <script src="lib/tween-min.js"></script>
+        <script src="lib/steelseries-min.js"></script>  
+        <script src="lib/mqttws31-min.js"></script>  
+
+        <script>
+
+
+            function debugMessage(message) {
+                console.log("onMessageArrived:" + message);
+                console.log("onMessageArrived:" + message.destinationName);
+                console.log("onMessageArrived:" + message.duplicate);
+                console.log("onMessageArrived:" + message.payloadString);
+                console.log("onMessageArrived:" + message.payloadBytes);
+                console.log("onMessageArrived:" + message.qos);
+                console.log("onMessageArrived:" + message.retained);
+            }
+
+            function initMqtt(gauge) {
+
+                var client;
+                var location = {
+                    hostname: 'localhost',
+                    port: '8081'
+                };
+
+        
+                // called when a message arrives
+                function onMessageArrived(message) {
+                    debugMessage(message);
+                    gauge.setValueAnimated(Number(message.payloadString));
+                }
+
+                // called when the client loses its connection
+                 function onConnectionLost(responseObject) {
+                     if (responseObject.errorCode !== 0) {
+                         console.log("onConnectionLost:" + responseObject.errorMessage);
+                     }
+                 }
+
+
+                // called when the client connects
+                function onConnect() {
+                    // Once a connection has been made, make a subscription and send a message.
+                    console.log("onConnect");
+                    client.subscribe("/test");
+                    message = new Paho.MQTT.Message("11");
+                    message.destinationName = "/test";
+                    client.send(message);
+                }
+
+
+                client = new Paho.MQTT.Client(location.hostname, Number(location.port), "clientId");
+
+                // set callback handlers
+                client.onConnectionLost = onConnectionLost;
+                client.onMessageArrived = onMessageArrived;
+
+                // connect the client
+                client.connect({onSuccess: onConnect});
+            }
+            ;
+
+            $(document).ready(function () {
+
+                var sections = [steelseries.Section(-25, 0, 'rgba(0, 0, 220, 0.3)'),
+                    steelseries.Section(0, 15, 'rgba(0, 220, 0, 0.3)'),
+                    steelseries.Section(15, 30, 'rgba(220, 220, 0, 0.3)')],
+                        // Define one area
+                        areas = [steelseries.Section(30, 50, 'rgba(220, 0, 0, 0.3)')],
+                        // Define value gradient for bargraph
+                        valGrad = new steelseries.gradientWrapper(0,
+                                100,
+                                [0, 0.33, 0.66, 0.85, 1],
+                                [new steelseries.rgbaColor(0, 0, 200, 1),
+                                    new steelseries.rgbaColor(0, 200, 0, 1),
+                                    new steelseries.rgbaColor(200, 200, 0, 1),
+                                    new steelseries.rgbaColor(200, 0, 0, 1),
+                                    new steelseries.rgbaColor(200, 0, 0, 1)]);
+
+                radial4 = new steelseries.Radial('canvasRadial4', {
+                    minValue: -25,
+                    maxValue: 50,
+                    gaugeType: steelseries.GaugeType.TYPE4,
+                    size: 201,
+                    section: sections,
+                    area: areas,
+                    titleString: "Teperatur",
+                    unitString: "°C",
+                    threshold: 50,
+                    lcdVisible: true
+                });
+
+                radial4.setFrameDesign(steelseries.FrameDesign.GLOSSY_METAL);
+                radial4.setBackgroundColor(steelseries.BackgroundColor.BRUSHED_METAL);
+                radial4.setValueAnimated(5);
+
+                initMqtt(radial4);
+            });
+        </script>
+
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        <div>
+            <canvas id="canvasRadial4" width="201" height="201"></canvas>
+
+        </div>
+    </body>
+</html>
