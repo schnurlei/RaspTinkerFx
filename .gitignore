@@ -2,3 +2,5 @@
 /rasptinker.fx/target/
 /RaspTinker.Model/target/
 /RaspTinkerSwing/target/
+/RaspTinker.Server/target/
+/RaspTinker.Server/src/main/webapp/bower_components/

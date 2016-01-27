@@ -14,88 +14,81 @@ import java.util.List;
  *
  * @author rainer
  */
-public abstract class WeatherStationModel
-{
-	private final List<MeasureListener> measureListeners;
-	private final List<ErrorListener> errorListeners;
-	private final List<ConnectionListener> connectionListeners;
-	private final List<TiltListener> tiltListeners;
+public abstract class WeatherStationModel {
 
-	public WeatherStationModel()
-	{
-		this.measureListeners = new ArrayList<>();
-		this.errorListeners = new ArrayList<>();
-		this.connectionListeners = new ArrayList<>();
-		this.tiltListeners = new ArrayList<>();
-	}
-	
-	public void addMeasureListener(MeasureListener aListener) {
-		
-		this.measureListeners.add(aListener);
-	}
-	
-	public void addErrorListener(ErrorListener aListener) {
-		
-		this.errorListeners.add(aListener);
-	}
+    private final List<MeasureListener> measureListeners;
+    private final List<ErrorListener> errorListeners;
+    private final List<ConnectionListener> connectionListeners;
+    private final List<TiltListener> tiltListeners;
 
-	public void addConnectionListener(ConnectionListener aListener) {
-		
-		this.connectionListeners.add(aListener);
-	}
+    public WeatherStationModel() {
+        this.measureListeners = new ArrayList<>();
+        this.errorListeners = new ArrayList<>();
+        this.connectionListeners = new ArrayList<>();
+        this.tiltListeners = new ArrayList<>();
+    }
 
-	public void addTiltListener(TiltListener aListener) {
-		
-		this.tiltListeners.add(aListener);
-	}
+    public void addMeasureListener(MeasureListener aListener) {
 
-	protected void notifyMeasureChange(Measurement aMeasurement, BigDecimal value) {
+        this.measureListeners.add(aListener);
+    }
 
-		this.measureListeners.stream().forEach((listener) ->
-		{
-			listener.changed(aMeasurement, value);
-		});
-	}
+    public void addErrorListener(ErrorListener aListener) {
 
-	protected void notifyErrorOccured(Measurement aMeasurement, Exception ex) {
+        this.errorListeners.add(aListener);
+    }
 
-		this.errorListeners.stream().forEach((listener) ->
-		{
-			listener.error(aMeasurement, ex);
-		});
-	}
-	
-	protected void notifyConnectionChanged(Measurement aMeasurement, ConnectionListener.State state) {
+    public void addConnectionListener(ConnectionListener aListener) {
 
-		this.connectionListeners.stream().forEach((listener) ->
-		{
-			listener.changed(aMeasurement, state);
-		});
-	}
+        this.connectionListeners.add(aListener);
+    }
 
-	protected void notifyTiltStateChange(TiltListener.State state) {
+    public void addTiltListener(TiltListener aListener) {
 
-		this.tiltListeners.stream().forEach((listener) ->
-		{
-			listener.changed(state);
-		});
-	}
+        this.tiltListeners.add(aListener);
+    }
 
+    protected void notifyMeasureChange(Measurement aMeasurement, BigDecimal value) {
 
-	public static BigDecimal decimal(int aValue) {
-		
-		return decimal(aValue, 0);
-	}
+        this.measureListeners.stream().forEach((listener) -> {
+            listener.changed(aMeasurement, value);
+        });
+    }
 
-	public static BigDecimal decimal1(double aValue) {
-		
-		return decimal(aValue, 1);
-	}
+    protected void notifyErrorOccured(Measurement aMeasurement, Exception ex) {
 
-	
-	public static BigDecimal decimal(double aValue, int scale) {
-		
-		return new BigDecimal(aValue).setScale(scale, RoundingMode.HALF_DOWN);
-	}
+        this.errorListeners.stream().forEach((listener) -> {
+            listener.error(aMeasurement, ex);
+        });
+    }
+
+    protected void notifyConnectionChanged(Measurement aMeasurement, ConnectionListener.State state) {
+
+        this.connectionListeners.stream().forEach((listener) -> {
+            listener.changed(aMeasurement, state);
+        });
+    }
+
+    protected void notifyTiltStateChange(TiltListener.State state) {
+
+        this.tiltListeners.stream().forEach((listener) -> {
+            listener.changed(state);
+        });
+    }
+
+    public static BigDecimal decimal(int aValue) {
+
+        return decimal(aValue, 0);
+    }
+
+    public static BigDecimal decimal1(double aValue) {
+
+        return decimal(aValue, 1);
+    }
+
+    public static BigDecimal decimal(double aValue, int scale) {
+
+        return new BigDecimal(aValue).setScale(scale, RoundingMode.HALF_DOWN);
+    }
 
 }

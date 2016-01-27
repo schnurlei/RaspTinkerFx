@@ -13,6 +13,7 @@ import com.tinkerforge.BrickletBarometer;
 import com.tinkerforge.BrickletDualButton;
 import com.tinkerforge.BrickletHumidity;
 import com.tinkerforge.BrickletLCD20x4;
+import com.tinkerforge.BrickletLEDStrip;
 import com.tinkerforge.BrickletNFCRFID;
 import com.tinkerforge.BrickletPiezoSpeaker;
 import com.tinkerforge.BrickletTilt;
@@ -57,8 +58,8 @@ public enum TinkerForgeDeviceTypes
 //    BRICKDC(    227, 	"Bricklet Voltage/Current"),
 //    BRICKDC(    228, 	"Bricklet Industrial Dual 0-20mA"),
 //    BRICKDC(    229, 	"Bricklet Distance US"),
-      BRICKLET_DUAL_BUTTON(BrickletDualButton.DEVICE_IDENTIFIER,"Bricklet Dual Button"),
-//    BRICKDC(    231, 	"Bricklet LED Strip"),
+      BRICKLET_DUAL_BUTTON(BrickletDualButton.DEVICE_IDENTIFIER, "Bricklet Dual Button"),
+      BRICKLET_LED(    BrickletLEDStrip.DEVICE_IDENTIFIER, "Bricklet LED Strip"),
 //    BRICKDC(    232, 	"Bricklet Moisture"),
 //    BRICKDC(    233, 	"Bricklet Motion Detector"),
 //    BRICKDC(    234, 	"Bricklet Multi Touch"),

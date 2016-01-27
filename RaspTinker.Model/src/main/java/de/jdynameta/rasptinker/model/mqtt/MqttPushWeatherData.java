@@ -15,10 +15,8 @@
  */
 package de.jdynameta.rasptinker.model.mqtt;
 
-import com.tinkerforge.BrickletAmbientLight;
+import com.tinkerforge.BrickletAmbientLightV2;
 import de.jdynameta.rasptinker.model.TinkerForgeConnection;
-import static de.jdynameta.rasptinker.model.weather.WeatherStationModel.decimal;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +30,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public class MqttPushWeatherData
 {
 	public static final String TOPIC = "TinkerForge/Wetterstation/";
-	public static final String BROKER = "192.168.178.71";  //broker
+	public static final String BROKER = "localhost";  //broker
     private static MqttClientBuilder builder = new MqttClientBuilder();
  	
 	
@@ -56,20 +54,21 @@ public class MqttPushWeatherData
 
 	private void addAmbientLight(String uid) {
 		
-		BrickletAmbientLight ambient =  this.connection.addAmbientLight(uid, 1000);
+		          BrickletAmbientLightV2 ambient =  this.connection.addAmbientLight(uid, 1000);
         ambient.addIlluminanceListener(illuminance -> {
-			final BigDecimal pressure = decimal(illuminance).divide(decimal(10));
+			
 			final String text = LocalDateTime.now() + " - Temp  : "
-                            + pressure + " °C";			
+                            + illuminance + " °C";			
 			buffer.sendAsync(text);
 		});	
+        
 	}
 
 	public static void main(String[] args)
 	{
 		try
 		{
-			new MqttPushWeatherData("meo");
+			new MqttPushWeatherData("uNU");
 		} catch (MqttException ex)
 		{
 			Logger.getLogger(MqttPushWeatherData.class.getName()).log(Level.SEVERE, null, ex);

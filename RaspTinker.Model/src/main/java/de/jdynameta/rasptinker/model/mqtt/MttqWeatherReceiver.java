@@ -30,7 +30,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  */
 public class MttqWeatherReceiver
 {
-	public static final String BROKER = "192.168.178.71";  //broker
+	public static final String BROKER = "10.11.12.50";  //broker
  
 	public MttqWeatherReceiver() throws MqttException
 	{
