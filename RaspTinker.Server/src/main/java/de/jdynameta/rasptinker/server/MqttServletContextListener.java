@@ -5,6 +5,7 @@
  */
 package de.jdynameta.rasptinker.server;
 
+
 import io.moquette.interception.AbstractInterceptHandler;
 import io.moquette.interception.InterceptHandler;
 import io.moquette.interception.messages.InterceptPublishMessage;
@@ -15,19 +16,18 @@ import io.moquette.server.config.ClasspathConfig;
 import io.moquette.server.config.IConfig;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import static java.util.Arrays.asList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
 
 /**
  *
  * @author rainer
  */
-@WebListener
+//@WebListener
 public class MqttServletContextListener implements ServletContextListener {
 
     private static final Logger LOG =  Logger.getLogger(MqttServletContextListener.class.getName());
@@ -63,7 +63,7 @@ public class MqttServletContextListener implements ServletContextListener {
 
         Server newMqttBroker = new Server();
         final IConfig classPathConfig = new ClasspathConfig();
-        List<? extends InterceptHandler> userHandlers = asList(new PublisherListener());
+        List<? extends InterceptHandler> userHandlers = Arrays.asList(new PublisherListener());
         newMqttBroker.startServer(classPathConfig, userHandlers);
         return newMqttBroker;
     }

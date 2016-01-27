@@ -6,9 +6,9 @@ import javax.ws.rs.core.Application;
 
 /**
  *
- * @author rschneider
+ * @author rainer
  */
-@ApplicationPath("api")
+@javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
 
     @Override

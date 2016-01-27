@@ -4,11 +4,21 @@
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <script src="lib/jquery-2.2.0.min.js"></script>
+
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/lodash/lodash.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+ 
         <script src="lib/tween-min.js"></script>
         <script src="lib/steelseries-min.js"></script>  
         <script src="lib/mqttws31-min.js"></script>  
-
+        <script src="app/SteelseriesDirective.js"></script>  
+        <script src="app/main.js"></script>  
+       
+        
         <script>
 
 
@@ -91,7 +101,7 @@
                     size: 201,
                     section: sections,
                     area: areas,
-                    titleString: "Teperatur",
+                    titleString: "Temperatur",
                     unitString: "°C",
                     threshold: 50,
                     lcdVisible: true
@@ -106,11 +116,9 @@
         </script>
 
     </head>
-    <body>
+    <body ng-app="spatentatenApp" ng-controller="MainCtlr">
         <h1>Hello World!</h1>
-        <div>
-            <canvas id="canvasRadial4" width="201" height="201"></canvas>
+        <div><gauge gauge-value="{{soundIntensity}}"></gauge></div>
 
-        </div>
     </body>
 </html>
