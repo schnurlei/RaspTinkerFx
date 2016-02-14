@@ -1,0 +1,14 @@
+sitemap tf_hennastall label="hennastall"
+{
+    Frame
+    {
+         Text item=TF_Humdity
+	Text item=TF_Moisture	
+	Text item=TF_Dust
+	Text item=TF_Illuminance
+	Text item=TF_Barometer
+	Text item=TF_Temperature_Bar
+	Text item=TF_Temperature
+    }
+}
+

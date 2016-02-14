@@ -20,6 +20,7 @@ import de.jdynameta.rasptinker.model.TinkerForgeConnection;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.eclipse.paho.client.mqttv3.IMqttClient;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -39,7 +40,7 @@ public class MqttPushWeatherData
 	
 	public MqttPushWeatherData( String ambientUid) throws MqttException
 	{
-		MqttClient sender = builder.uri("tcp://" + BROKER+":1883").clientUIDGenerated().build();
+		IMqttClient sender = builder.uri("tcp://" + BROKER+":1883").clientUIDGenerated().build();
 		sender.connect();
 		this.buffer = new MqttBuffer() //Implementierung in Listing 6
           .client(sender).topic(TOPIC).qos(1).retained(true);		
@@ -48,7 +49,7 @@ public class MqttPushWeatherData
 		this.connect("localhost", 4223);
 	}
 	
-	public void connect(String host, int port) {
+	private void connect(String host, int port) {
 		connection.connect(host, port);
 	}
 

@@ -20,38 +20,38 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Supplier;
-import org.eclipse.paho.client.mqttv3.IMqttClient;
+import org.eclipse.paho.client.mqttv3.IMqttAsyncClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 /**
  *
  * @author rainer
  */
-public class MqttBuffer {
+public class MqttWebsocktetBuffer {
  
   static final ExecutorService fixedThreadPool 
                                   = Executors.newFixedThreadPool(4);
  
   private String topic;
-  private IMqttClient client;
+  private IMqttAsyncClient client;
   private int qos = 1;
   private boolean retained = true;
  
-  public MqttBuffer topic(String s) {
+  public MqttWebsocktetBuffer topic(String s) {
     this.topic = s;
     return this;
   }
  
-  public MqttBuffer client(IMqttClient c) {
+  public MqttWebsocktetBuffer client(IMqttAsyncClient c) {
     this.client = c;
     return this;
   }
  
-  public MqttBuffer qos(int q) {
+  public MqttWebsocktetBuffer qos(int q) {
     this.qos = q;
     return this;
   }
-  public MqttBuffer retained(boolean b) {
+  public MqttWebsocktetBuffer retained(boolean b) {
     this.retained = b;
     return this;
   }

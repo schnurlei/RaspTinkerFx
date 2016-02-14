@@ -26,19 +26,23 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.paho</groupId>
-            <artifactId>mqtt-client</artifactId>
-            <version>0.4.0</version>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
         </dependency>	 
         
         <dependency>
             <groupId>io.moquette</groupId>
             <artifactId>moquette-broker</artifactId>
-            <version>0.8</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-client</artifactId>
+            <version>9.3.7.v20160115</version>
         </dependency>
         
     </dependencies>
@@ -46,10 +50,6 @@
         
         
     <repositories>
-        <repository>
-            <id>Eclipse Paho Repo</id>
-            <url>https://repo.eclipse.org/content/repositories/paho-releases/</url>
-        </repository>
         <repository>
             <id>bintray</id>
             <url>http://dl.bintray.com/andsel/maven/</url>
@@ -60,5 +60,6 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        
     </repositories>
 </project>

@@ -1,8 +1,9 @@
 package de.jdynameta.rasptinker.model.mqtt;
 
+import io.inventit.dev.mqtt.paho.MqttWebSocketAsyncClient;
 import java.util.UUID;
-import org.eclipse.paho.client.mqttv3.IMqttClient;
-import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.IMqttAsyncClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
@@ -26,22 +27,25 @@ import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
  *
  * @author rainer
  */
-public class MqttClientBuilder {
+public class MqttWebsocketClientBuilder {
  
   private String uri;
   private String clientUID;
   private boolean memoryPersistence = true;
   private boolean filePersistence = false;
  
-  public  IMqttClient build(){
-    MqttClient client;
+  public  IMqttAsyncClient build(){
+    
+    IMqttAsyncClient client;
     try {
       if(memoryPersistence){
-        client = new MqttClient( uri,clientUID, new MemoryPersistence() );
+        client = new MqttWebSocketAsyncClient(
+        uri, clientUID, new MemoryPersistence());
       } else{
-        client = new MqttClient( uri,clientUID,
+        client = new MqttWebSocketAsyncClient( uri,clientUID,
                     new MqttDefaultFilePersistence());
       }
+      
     } catch (MqttException e) {
       e.printStackTrace();
       client = null;
@@ -49,16 +53,16 @@ public class MqttClientBuilder {
     return client;
   }
  
-  public MqttClientBuilder uri(String s) {
+  public MqttWebsocketClientBuilder uri(String s) {
     this.uri = s;
     return this;
   }
  
-  public MqttClientBuilder clientUID(String s) {
+  public MqttWebsocketClientBuilder clientUID(String s) {
     this.clientUID = s;
     return this;
   }
-  public MqttClientBuilder clientUIDGenerated() {
+  public MqttWebsocketClientBuilder clientUIDGenerated() {
     String substring = UUID.randomUUID()
                             .toString().replace("-", "").substring(0, 22);
     this.clientUID = substring;
@@ -66,13 +70,13 @@ public class MqttClientBuilder {
     return this;
   }
  
-  public MqttClientBuilder memoryPersistence(boolean b) {
+  public MqttWebsocketClientBuilder memoryPersistence(boolean b) {
     this.memoryPersistence = b;
     this.filePersistence = !this.memoryPersistence;
     return this;
   }
  
-  public MqttClientBuilder filePersistence(boolean b) {
+  public MqttWebsocketClientBuilder filePersistence(boolean b) {
     this.filePersistence = b;
     this.memoryPersistence = !this.filePersistence;
     return this;

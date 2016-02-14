@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.jdynameta.rasptinker.model;
+package de.jdynameta.rasptinker.model.mqtt;
 
 import com.tinkerforge.AlreadyConnectedException;
 import com.tinkerforge.BrickMaster;
@@ -30,14 +30,14 @@ import java.util.logging.Logger;
  *
  * @author rainer
  */
-public class TinkerForgeConnection {
+public class TinkerForgeDeviceHandler {
 
-    private static final Logger LOGGER = Logger.getLogger(TinkerForgeConnection.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TinkerForgeDeviceHandler.class.getName());
 
     private IPConnection ipcon;
     private final List<ConnectionListener> connectionListener = new CopyOnWriteArrayList<>();
 
-    public TinkerForgeConnection() {
+    public TinkerForgeDeviceHandler() {
 
         this.ipcon = new IPConnection();
         
@@ -69,7 +69,7 @@ public class TinkerForgeConnection {
             callConnectionListeners(ConnectionState.CONNECTED, null);
 
             try {
-                TinkerForgeConnection.this.ipcon.enumerate();
+                TinkerForgeDeviceHandler.this.ipcon.enumerate();
             } catch (NotConnectedException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }

@@ -1,0 +1,7 @@
+Number TF_Humdity         "Humidity     [%.1f %%]"    { tinkerforge="uid=nBd" }
+Number TF_Moisture        "Moisture     [%.1f]"       { tinkerforge="uid=kz5" }
+Number TF_Dust            "Dust         [%.0f]"       { tinkerforge="uid=wHi" }
+Number TF_Illuminance     "Illuminance  [%.2f]"       { tinkerforge="uid=uNU" }
+Number TF_Barometer       "Pressure     [%.0f mbar]"  { tinkerforge="uid=jZW" }
+Number TF_Temperature_Bar "TemperatureB [%.1f °C]"    { tinkerforge="uid=jZW, subid=temperature" }
+Number TF_Temperature     "Temperature  [%.2f]"       { tinkerforge="uid=t4h" }
